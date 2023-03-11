@@ -94,11 +94,11 @@ def test_proposal_is_expired(proposal):
 
 # deterministic ordering
 def test_approved_and_ranked(go_list_proposals):
-    from dashd import DashDaemon
-    dashd = DashDaemon.initialize(None)
+    from pozoqod import DashDaemon
+    pozoqod = DashDaemon.initialize(None)
 
     for item in go_list_proposals:
-        (go, subobj) = GovernanceObject.import_gobject_from_dashd(dashd, item)
+        (go, subobj) = GovernanceObject.import_gobject_from_pozoqod(pozoqod, item)
 
     prop_list = Proposal.approved_and_ranked(proposal_quorum=1, next_superblock_max_budget=60)
 

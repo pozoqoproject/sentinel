@@ -33,7 +33,7 @@ def is_valid_dash_address(address, network='mainnet'):
         decoded = base58.b58decode_chk(address)
         address_version = ord(decoded[0:1])
     except:
-        # rescue from exception, not a valid Dash address
+        # rescue from exception, not a valid pozoqo address
         return False
 
     if ((address_version != p2pkh_version) and (address_version != p2sh_version)):
@@ -211,7 +211,7 @@ def did_we_vote(output):
     err_msg = ''
 
     try:
-        detail = output.get('detail').get('dash.conf')
+        detail = output.get('detail').get('pozoqo.conf')
         result = detail.get('result')
         if 'errorMessage' in detail:
             err_msg = detail.get('errorMessage')

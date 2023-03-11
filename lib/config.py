@@ -15,13 +15,13 @@ sentinel_version = "1.7.1"
 
 def get_dash_conf():
     if sys.platform == 'win32':
-        dash_conf = os.path.join(os.getenv('APPDATA'), "DashCore/dash.conf")
+        dash_conf = os.path.join(os.getenv('APPDATA'), "PozoqoCore/pozoqo.conf")
     else:
         home = os.environ.get('HOME')
 
-        dash_conf = os.path.join(home, ".dashcore/dash.conf")
+        dash_conf = os.path.join(home, ".pozoqocore/pozoqo.conf")
         if sys.platform == 'darwin':
-            dash_conf = os.path.join(home, "Library/Application Support/DashCore/dash.conf")
+            dash_conf = os.path.join(home, "Library/Application Support/PozoqoCore/pozoqo.conf")
 
     dash_conf = sentinel_cfg.get('dash_conf', dash_conf)
 

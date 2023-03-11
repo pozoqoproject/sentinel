@@ -1,5 +1,5 @@
 """
-dashd JSONRPC interface
+pozoqod JSONRPC interface
 """
 import sys
 import os
@@ -23,7 +23,7 @@ class DashDaemon():
 
         self.creds = (user, password, host, port)
 
-        # memoize calls to some dashd methods
+        # memoize calls to some pozoqod methods
         self.governance_info = None
         self.blockchain_info = None
         self.gobject_votes = {}

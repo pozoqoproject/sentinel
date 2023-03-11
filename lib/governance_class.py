@@ -19,8 +19,8 @@ class GovernanceClass(object):
         return self.governance_object
 
     # pass thru to GovernanceObject#vote
-    def vote(self, dashd, signal, outcome):
-        return self.go.vote(dashd, signal, outcome)
+    def vote(self, pozoqod, signal, outcome):
+        return self.go.vote(pozoqod, signal, outcome)
 
     # pass thru to GovernanceObject#voted_on
     def voted_on(self, **kwargs):
@@ -38,15 +38,15 @@ class GovernanceClass(object):
 
         return cmd
 
-    def submit(self, dashd):
+    def submit(self, pozoqod):
         # don't attempt to submit a superblock unless a masternode
         # note: will probably re-factor this, this has code smell
-        if (self.only_masternode_can_submit and not dashd.is_masternode()):
+        if (self.only_masternode_can_submit and not pozoqod.is_masternode()):
             print("Not a masternode. Only masternodes may submit these objects")
             return
 
         try:
-            object_hash = dashd.rpc_command(*self.get_submit_command())
+            object_hash = pozoqod.rpc_command(*self.get_submit_command())
             printdbg("Submitted: [%s]" % object_hash)
         except JSONRPCException as e:
             print("Unable to submit: %s" % e.message)

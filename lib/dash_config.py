@@ -11,7 +11,7 @@ class DashConfig():
 
     @classmethod
     def slurp_config_file(self, filename):
-        # read dash.conf config but skip commented lines
+        # read pozoqo.conf config but skip commented lines
         f = io.open(filename)
         lines = []
         for line in f:
@@ -20,20 +20,20 @@ class DashConfig():
             lines.append(line)
         f.close()
 
-        # data is dash.conf without commented lines
+        # data is pozoqo.conf without commented lines
         data = ''.join(lines)
 
         return data
 
     @classmethod
     def get_rpc_creds(self, data):
-        # get rpc info from dash.conf
+        # get rpc info from pozoqo.conf
         match = re.findall(r'rpc(user|password|port)=(.*?)$', data, re.MULTILINE)
 
         # python >= 2.7
         creds = {key: value for (key, value) in match}
 
-        # determine default rpc port from testnet= setting in dash.conf
+        # determine default rpc port from testnet= setting in pozoqo.conf
         network = 'mainnet'
         testnet_value = re.search(r'testnet=(.*?)$', data, re.MULTILINE)
         if testnet_value:
@@ -44,14 +44,14 @@ class DashConfig():
             except ValueError as e:
                 network = 'testnet'
 
-        # standard Dash defaults...
-        default_port = 9998 if (network == 'mainnet') else 19998
+        # standard pozoqo defaults...
+        default_port = 40998 if (network == 'mainnet') else 19998
 
-        # use default port for network if not specified in dash.conf
+        # use default port for network if not specified in pozoqo.conf
         if not ('port' in creds):
             creds[u'port'] = default_port
 
-        # convert to an int if taken from dash.conf
+        # convert to an int if taken from pozoqo.conf
         creds[u'port'] = int(creds[u'port'])
 
         # return a dictionary with RPC credential key, value pairs
